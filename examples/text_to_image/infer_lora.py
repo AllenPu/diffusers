@@ -14,6 +14,7 @@ pipe.unet.load_attn_procs(model_path)
 pipe.to("cuda")
 
 
+
 des = args.description
 prompt = "A woman with {}".format(des)
 image = pipe(prompt, num_inference_steps=30, guidance_scale=7.5).images[0]
