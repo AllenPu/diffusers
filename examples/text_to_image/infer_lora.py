@@ -4,11 +4,12 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--description", help = "what you wanna see", type = str, default="naked full body")
+parser.add_argument("--lora_path", help = "store lora", type = str, default="./lora/")
 args = parser.parse_args()
 
 
 
-model_path = "sd-naruto-model-lora"
+model_path = f"{args.lora_path}"
 pipe = StableDiffusionPipeline.from_pretrained("SG161222/Realistic_Vision_V6.0_B1_noVAE", torch_dtype=torch.float16, safety_checker=None)
 pipe.unet.load_attn_procs(model_path)
 pipe.to("cuda")
